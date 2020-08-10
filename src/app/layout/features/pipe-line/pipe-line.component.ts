@@ -12,12 +12,10 @@ export class PipeLineComponent implements OnInit,AfterViewInit  {
   constructor(public matDialog:MatDialog) { }
 
   ngOnInit(): void {
-    //this.matDialog.open(this.mismoFileUpload);
+    
   }
 
-  openDialog() {
-    this.matDialog.open(this.mismoFileUpload);
-  }
+  
   ngAfterViewInit() {
     this.matDialog.open(this.mismoFileUpload,{ disableClose: true });
   }

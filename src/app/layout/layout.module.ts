@@ -8,6 +8,7 @@ import { WelcomeMaterialModule } from '../material/common.material.module';
 import { LayoutRoutingModule } from './lay-routing.module';
 import { FileProgressComponent } from './features/file-progress.component';
 import { ProgressDirective } from './features/progress.directive';
+import { DashboardComponent } from './features/pipe-line/dashboard/dashboard.component';
 
 
 
@@ -20,6 +21,7 @@ import { ProgressDirective } from './features/progress.directive';
     PipeLineComponent,
     FileProgressComponent,
     ProgressDirective,
+    DashboardComponent,
     
 
   ],

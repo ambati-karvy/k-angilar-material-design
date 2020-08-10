@@ -8,10 +8,10 @@
   left: 0;
   right: 0;
   .sidenav-container {
-    flex: 1;
+    flex: 2;
     background: $main-background-color;
     .sidenav {
-      padding: 12px;
+      padding: 0px;
       width: 250px;
       background: $white;
     }
@@ -19,4 +19,8 @@
       padding: 0px;
     }
   }
+}
+
+.active {
+  color: #FFF !important;
 }
