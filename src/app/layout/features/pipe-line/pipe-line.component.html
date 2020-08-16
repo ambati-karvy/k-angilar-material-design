@@ -1,4 +1,38 @@
 
+
+<!-- <div class="example-container">
+    
+    <mat-form-field   class="my-form-field">
+      <mat-label >Enter some input</mat-label>
+      <input matInput #input maxlength="10" placeholder="Ex. Nougat">
+      <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field class="my-form-field">
+      <mat-label>Select me</mat-label>
+      <mat-select>
+        <mat-option value="option">Option</mat-option>
+      </mat-select>
+      <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+    </mat-form-field>
+    
+</div> -->
+<mat-tab-group style="background-color: blue;" [disableRipple]=true>
+    <mat-tab label="First"> </mat-tab>
+    <mat-tab label="Second"> </mat-tab>
+    <mat-tab label="Third"> </mat-tab>
+</mat-tab-group>
+<div>
+    
+</div>
+
+<!-- <form>
+    <mat-form-field class="my-form-field">
+      <input matInput placeholder="My Input">
+    </mat-form-field>
+</form> -->
+
+<button mat-button color="primary">Primary</button>
 <ng-template #mismoFileUpload>
     <button mat-icon-button class="close-button" [mat-dialog-close]="true">
         <mat-icon class="close-icon" color="warn">close</mat-icon>

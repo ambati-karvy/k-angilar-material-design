@@ -1,6 +1,50 @@
 @import '~@angular/material/theming';
 @include mat-core();
-$primary: mat-palette($mat-blue, 700);
-$accent: mat-palette($mat-orange, 700);
+$primary: mat-palette($mat-yellow, 700);
+$accent: mat-palette($mat-yellow, 700);
+$warn:mat-palette($mat-yellow, 700);
+$typography:mat-palette($mat-green, 700);
 $theme: mat-light-theme($primary, $accent);
-@include angular-material-theme($theme);
+//$theme1: mat-light-theme($primary, $accent,$warn);
+
+
+//@include mat-button-theme($theme);
+//@include mat-form-field-theme($theme1);
+
+@mixin app-root-typography($config) {
+    app-root {
+      h1 {
+        @include mat-typography-level-to-styles($config, title);
+      }
+    }
+}
+
+$app-typography: mat-typography-config(
+  $font-family: 'Open Sanshsajjas',
+  $title: mat-typography-level(24px, 32px, bold)
+);
+
+@mixin app-typography($typography: $app-typography) {
+    @include app-root-typography($typography);
+}
+
+@mixin app-style-core() {
+    @include app-typography();
+}
+
+//@include app-root-typography($theme);
+
+//@include mat-form-field-placeholder-theme($theme1)
+
+
+@include app-style-core();
+
+@mixin angular-button-large-radius {
+  .mat-raised-button,
+  .mat-stroked-button,
+  .mat-flat-button {
+    border-radius: 50px;
+  }
+}
+
+@include angular-button-large-radius;

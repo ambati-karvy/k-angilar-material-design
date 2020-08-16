@@ -1,0 +1,27 @@
+// @import '~@angular/material/theming';
+
+
+// @mixin app-root-typography($config) {
+//     app-dashboard {
+//     h1 {
+//       @include mat-typography-level-to-styles($config, title);
+//     }
+//   }
+// }
+::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
+    opacity: 3 !important;
+    transform: translateY(0px) !important;
+}
+
+.header-align-right{
+    display: flex;
+    padding:  0px;
+    justify-content: flex-start;
+  }
+
+
+table {
+    width: 100%;
+}
+
+

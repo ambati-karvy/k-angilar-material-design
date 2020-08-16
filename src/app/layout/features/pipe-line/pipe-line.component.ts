@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PipeLineComponent implements OnInit,AfterViewInit  {
   @ViewChild('mismoFileUpload') mismoFileUpload: TemplateRef<any>;
-
+  hide = true;
   constructor(public matDialog:MatDialog) { }
 
   ngOnInit(): void {
@@ -17,7 +17,7 @@ export class PipeLineComponent implements OnInit,AfterViewInit  {
 
   
   ngAfterViewInit() {
-    this.matDialog.open(this.mismoFileUpload,{ disableClose: true });
+    //this.matDialog.open(this.mismoFileUpload,{ disableClose: true });
   }
 
   files: any[] = [];

@@ -14,9 +14,15 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select'
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 const MaterialModule = [
+  MatSlideToggleModule,
+  MatSelectModule,
   MatButtonModule,
   MatCardModule,
   MatInputModule,
@@ -31,7 +37,8 @@ const MaterialModule = [
   MatSortModule,
   MatDialogModule,
   MatCheckboxModule,
-  MatSliderModule
+  MatSliderModule,
+  MatTabsModule
 ]
 
 @NgModule({
