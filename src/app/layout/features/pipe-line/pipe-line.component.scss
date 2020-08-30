@@ -1,13 +1,30 @@
 
-// .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-//   color: white;
-// }
-// mat-form-field.mat-form-field {
-//   color:white;
-// }
+.mat-form-field-appearance-outline .mat-form-field-outline-thick {
+  color: white;
+}
+mat-form-field.mat-form-field {
+  color:white;
+}
+.mat-tab-label {
+  background-color: white;
+}
+
+.example-button-toggle-label {
+  display: inline-block;
+  margin: 16px;
+}
+
+[aria-label=primary] {
+  background-color: rgb(4, 0, 255);
+}
+
+[aria-label=accent] {
+  background-color: aqua;
+}
 
 .remove-border-bottom ::ng-deep .mat-tab-header {
   border-bottom: none;
+  background-color: white;
 }
 .container {
     width: 450px;
@@ -182,7 +199,7 @@
     height: 100px;
     margin: auto;
     padding: 10px;
-    position: absolute;
+    //position: absolute;
   }
   .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;

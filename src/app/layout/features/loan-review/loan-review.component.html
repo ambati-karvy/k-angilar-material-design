@@ -1,0 +1,40 @@
+<div class="load-container">
+    <span>Loan number #{{loanNumber}}</span>
+</div>
+<div class="borrower-container">
+    <div>
+        <span>Borrower Information</span>
+        <ul>
+            <li>result<b>data1jhfgshgfhsdhjhdgshjfjhdsfjhdfsh</b></li>
+            <li>result<b>data1</b></li>
+            <li>result<b>data1</b></li>
+        </ul>
+    </div>
+    <div>
+        <span>Income Information</span>
+        <ul>
+            <li>result<b>data1</b></li> 
+        </ul>
+    </div>
+    <div>
+        <h1>Loan Details</h1>
+        <ul>
+            <li>result<b>data1</b></li>
+        </ul>
+    </div>
+    <div >
+        <h1>Loan Progress</h1>
+        <ul>
+            <li>result<b>data1</b></li>
+            
+        </ul>
+    </div>
+</div>
+<div class="loan-tab">
+    <nav mat-tab-nav-bar >
+        <a mat-tab-link routerLink="loan-overview" routerLinkActive #homeTab="routerLinkActive" [active]="homeTab.isActive">Home</a>
+        <a mat-tab-link routerLink="income-verfication" routerLinkActive #searchTab="routerLinkActive" [active]="searchTab.isActive">Search</a>
+        <a mat-tab-link routerLink="conditions" routerLinkActive #otherTab="routerLinkActive" [active]="otherTab.isActive">Others</a>
+    </nav>
+</div>
+<router-outlet></router-outlet>

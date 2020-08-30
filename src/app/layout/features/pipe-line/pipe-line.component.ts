@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
+import { LoanServiceService } from '../../services/loan-service.service';
 
 @Component({
   selector: 'app-pipe-line',
@@ -9,10 +12,18 @@ import { MatDialog } from '@angular/material/dialog';
 export class PipeLineComponent implements OnInit,AfterViewInit  {
   @ViewChild('mismoFileUpload') mismoFileUpload: TemplateRef<any>;
   hide = true;
-  constructor(public matDialog:MatDialog) { }
+  background: ThemePalette = 'primary';
+  links = ['First', 'Second', 'Third'];
+  activeLink = this.links[0];
+  constructor(public matDialog:MatDialog,private router: Router, private loanReview:LoanServiceService) { }
 
   ngOnInit(): void {
     
+  }
+
+  navifation(): void {
+    this.router.navigateByUrl('/loan-review');
+    this.loanReview.currentNameSubject$.next('raghu')
   }
 
   

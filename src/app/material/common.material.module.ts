@@ -17,10 +17,12 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select'
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle'
 
 
 
 const MaterialModule = [
+  MatButtonToggleModule,
   MatSlideToggleModule,
   MatSelectModule,
   MatButtonModule,

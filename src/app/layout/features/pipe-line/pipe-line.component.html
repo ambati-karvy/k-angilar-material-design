@@ -1,6 +1,6 @@
 
 
-<!-- <div class="example-container">
+<div class="example-container">
     
     <mat-form-field   class="my-form-field">
       <mat-label >Enter some input</mat-label>
@@ -16,12 +16,24 @@
       <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
     </mat-form-field>
     
-</div> -->
-<mat-tab-group style="background-color: blue;" [disableRipple]=true>
+</div> 
+<div>
+    <button (click)="navifation()">Click</button>
+</div>
+<!-- <mat-tab-group style="background-color: blue;" [backgroundColor]="'primary'" [color]="'red'">
     <mat-tab label="First"> </mat-tab>
     <mat-tab label="Second"> </mat-tab>
     <mat-tab label="Third"> </mat-tab>
-</mat-tab-group>
+</mat-tab-group> -->
+
+  
+  
+<!-- <nav mat-tab-nav-bar [backgroundColor]="background">
+    <a mat-tab-link *ngFor="let link of links"
+       (click)="activeLink = link"
+       [active]="activeLink == link"> {{link}} </a>
+    <a mat-tab-link disabled>Disabled Link</a>
+  </nav> -->
 <div>
     
 </div>
