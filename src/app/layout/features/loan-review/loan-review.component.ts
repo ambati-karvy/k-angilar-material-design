@@ -9,14 +9,15 @@ import { LoanServiceService } from '../../services/loan-service.service'
 export class LoanReviewComponent implements OnInit {
 
   loanNumber: string;
-  constructor(private loanReview:LoanServiceService) { }
+  constructor(private loanReview:LoanServiceService) { 
+    this.loanReview.currentNameSubject$.subscribe(value => {
+      this.loanNumber = value;
+    })
+  }
 
   ngOnInit(): void {
     //alert(this.loanReview.currentNameSubject$.getValue)
-    this.loanReview.currentNameSubject$.subscribe(value => {
-      alert(value)
-      this.loanNumber = value;
-    })
+    
     
   }
 

@@ -23,7 +23,8 @@ export class PipeLineComponent implements OnInit,AfterViewInit  {
 
   navifation(): void {
     this.router.navigateByUrl('/loan-review');
-    sessionStorage.setItem("loanNumber", "ywetruyerwe");
+    this.loanReview.currentNameSubject$.next("1299999999")
+    sessionStorage.setItem("loanNumber", "1299999999");
   }
 
   
