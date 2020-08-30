@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoanServiceService {
-
-  currentNameSubject$ = new BehaviorSubject('Eric');
-  constructor() { }
+  currentNameSubject$ = new BehaviorSubject(sessionStorage.getItem('loanNumber'));
+  
 }

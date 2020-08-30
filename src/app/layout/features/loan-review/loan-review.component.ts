@@ -14,8 +14,10 @@ export class LoanReviewComponent implements OnInit {
   ngOnInit(): void {
     //alert(this.loanReview.currentNameSubject$.getValue)
     this.loanReview.currentNameSubject$.subscribe(value => {
+      alert(value)
       this.loanNumber = value;
     })
+    
   }
 
 }
