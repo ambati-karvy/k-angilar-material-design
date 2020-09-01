@@ -26,26 +26,49 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /** Overrides underline color **/
 .example-container {
-    .my-form-field.mat-form-field-appearance-legacy .mat-form-field-underline,
-    .my-form-field.mat-form-field-appearance-legacy .mat-form-field-ripple,
-    .my-form-field.mat-form-field-appearance-legacy.mat-focused
+    .mat-form-field-appearance-fill .mat-form-field-underline,
+    .mat-form-field-appearance-fill .mat-form-field-ripple,
+    .mat-form-field-appearance-fill.mat-focused
         .mat-form-field-underline,
-    .my-form-field.mat-form-field-appearance-legacy.mat-focused
+    .mat-form-field-appearance-fill.mat-focused
         .mat-form-field-ripple {
         background-color:white;
     }
-    
+
+    .mat-form-field-appearance-fill .mat-form-field-underline::before,
+    .mat-form-field-appearance-fill .mat-form-field-ripple {
+        background-color:white;
+    }
+
+    .mat-form-field-appearance-fill.mat-focused, 
+    .mat-select-arrow{
+        color: #fff ;
+    }
+
+    .mat-form-field-appearance-fill.mat-form-field .mat-form-field-flex{
+        background-color: green;
+    }
     /** Overrides label color **/
-    .my-form-field.mat-form-field-appearance-legacy .mat-form-field-label,
-    .my-form-field.mat-form-field-appearance-legacy.mat-focused
+    .mat-form-field-appearance-fill .mat-form-field-label,
+    .mat-form-field-appearance-fill.mat-focused
         .mat-form-field-label {
         color:white;
     } 
 
-    .my-form-field.mat-form-field-appearance-legacy .mat-input-element {
+    .mat-form-field-appearance-fill .mat-input-element {
         caret-color:white;
         color:white;
     }
+
+    .mat-form-field-appearance-fill .mat-form-field-outline {
+        color: white;
+      }
+      /* Font color */
+      input.mat-input-element {
+        color: white;
+      }
+   
+      
 }
 
 .mat-elevation-z8 {
