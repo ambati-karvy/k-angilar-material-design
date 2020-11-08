@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCommonModule } from '@angular/material/core';
 import { WelcomeMaterialModule } from './material/common.material.module';
 import { NavigationComponent } from './navigation/navigation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    WelcomeMaterialModule
+    WelcomeMaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

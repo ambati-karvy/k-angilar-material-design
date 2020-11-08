@@ -11,3 +11,42 @@ $custom-typography: mat-typography-config(
     $body-1: mat-typography-level(16px, 24px, 500)
 );
 @include angular-material-typography($custom-typography);
+
+
+
+.example-container {
+    .mat-form-field-appearance-fill .mat-form-field-underline,
+    .mat-form-field-appearance-fill .mat-form-field-ripple,
+    .mat-form-field-appearance-fill.mat-focused
+        .mat-form-field-underline,
+    .mat-form-field-appearance-fill.mat-focused
+        .mat-form-field-ripple {
+        background-color:white;
+    }
+  
+    .mat-form-field-appearance-fill .mat-form-field-underline::before,
+    .mat-form-field-appearance-fill .mat-form-field-ripple {
+        background-color:white;
+    }
+  
+    .mat-focused, 
+    .mat-select-arrow{
+        color: #fff ;
+    }
+  
+     
+    .mat-form-field-appearance-fill.mat-form-field.mat-focused.mat-form-field-flex{
+        background-color: green;
+    }
+    /** Overrides label color **/
+    .mat-form-field-appearance-fill .mat-form-field-label,
+    .mat-form-field-appearance-fill.mat-focused
+        .mat-form-field-label {
+        color:white;
+    } 
+  
+    // .mat-form-field-appearance-fill .mat-input-element {
+    //     caret-color:white;
+    //     color:white;
+    // } 
+  }

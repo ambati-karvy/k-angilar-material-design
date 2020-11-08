@@ -14,4 +14,16 @@ export class AppComponent {
     const hostClass = isDarkMode ? 'theme-dark' : 'theme-light';
     this.renderer.setAttribute(this.document.body, 'class', hostClass);
   }
+
+  runWorker() {
+
+    const demoWorker = new Worker('./demo.worker', { type: 'module'});
+
+    demoWorker.onmessage = (message) => {
+      console.log(`Got message`, message.data);
+    };
+
+    demoWorker.postMessage('hello');
+
+  }
 }

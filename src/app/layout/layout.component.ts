@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  sideNavOpened = true;
+  sideNavOpened = false;
   sideNavMode: 'side' | 'over' = 'side';
   toolBarHeight = 64;
 

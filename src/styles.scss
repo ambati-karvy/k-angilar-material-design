@@ -3,63 +3,36 @@
 
 
 @import './scss/material';
-@import './scss/utils';
-@import './scss/responsive';
-@import './scss/variables';
-@import './scss/theme';
+//@import './scss/utils';
+//@import './scss/responsive';
+//@import './scss/variables';
+//@import './scss/theme';
+@import './scss/main';
 
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.example-container{
-    background-color: blue;
-    height: 300px;
-   // position: relative;
+* {
+    margin: 0;
+    padding: 0;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
-.example-container .mat-form-field + .mat-form-field {
-    margin-left: 8px;
-    
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;  //1rem * 10px
 }
+body { margin: 0; 
+    padding:0 ;
+    font-family:  "Helvetica Neue", sans-serif; 
+    background-color: red;
+}
+
+
 
 /** Overrides underline color **/
-.example-container {
-    .mat-form-field-appearance-fill .mat-form-field-underline,
-    .mat-form-field-appearance-fill .mat-form-field-ripple,
-    .mat-form-field-appearance-fill.mat-focused
-        .mat-form-field-underline,
-    .mat-form-field-appearance-fill.mat-focused
-        .mat-form-field-ripple {
-        background-color:white;
-    }
 
-    .mat-form-field-appearance-fill .mat-form-field-underline::before,
-    .mat-form-field-appearance-fill .mat-form-field-ripple {
-        background-color:white;
-    }
-
-    .mat-form-field-appearance-fill.mat-focused, 
-    .mat-select-arrow{
-        color: #fff ;
-    }
-
-    .mat-form-field-appearance-fill.mat-form-field .mat-form-field-flex{
-        background-color: green;
-    }
-    /** Overrides label color **/
-    .mat-form-field-appearance-fill .mat-form-field-label,
-    .mat-form-field-appearance-fill.mat-focused
-        .mat-form-field-label {
-        color:white;
-    } 
-
-    .mat-form-field-appearance-fill .mat-input-element {
-        caret-color:white;
-        color:white;
-    } 
-}
 
 .mat-elevation-z8 {
     padding: 10px;

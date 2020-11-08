@@ -1,7 +1,39 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
+import { interval, Observable, of  } from 'rxjs';
+import 'rxjs/Rx';
+import { HttpClient } from '@angular/common/http';
+import { fromWorker } from 'observable-webworker';
+import { FileHashEvent, HashWorkerMessage, Thread } from './hash-worker.types';
+import { fromWorkerPool } from 'observable-webworker';
+import { GoogleChartsService } from './google-charts.service';
+import TimelineOptions = google.visualization.TimelineOptions;
+
+import {
+  animationFrameScheduler,
+  asyncScheduler,
+  combineLatest,
+  concat,
+  ReplaySubject,
+  Subject,
+} from 'rxjs';
+import {
+  filter,
+  groupBy,
+  map,
+  mergeMap,
+  observeOn,
+  scan,
+  shareReplay,
+  startWith,
+  switchMap,
+  switchMapTo,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +57,152 @@ export class DashboardComponent implements OnInit {
     // this.sort.active = sortState.active;
     // this.sort.direction = sortState.direction;
     // this.sort.sortChange.emit(sortState);
+
+  }
+
+  public intervallTimer = interval(2000);
+  private subscription;
+  constructor(private http:HttpClient, private googleChartService: GoogleChartsService) {
+    // this.workResult$.subscribe(data => {
+    //   console.log(data)
+    // })
+  }
+
+  public createObs1() {
+    this.subscription = this.intervallTimer.switchMap(() => this.http.get('http://jsonplaceholder.typicode.com/users/')).map((data) => data)
+    .subscribe((data) => { 
+       console.log(data);// see console you get output every 5 sec
+    });
+  }
+
+  public destory() {
+    
+    this.subscription.unsubscribe()
+  }
+
+  createObs() {
+    alert(2)
+    const input$: Observable<string> = of('hello');
+
+    fromWorker<string, string>(() => new Worker('./hello.worker', { type: 'module'}), input$)
+      .subscribe(message => {
+        console.log(`Got message`, message);
+      });
+
+  }
+
+  //  -----------------------------------------------------------------
+
+  public multiFilesToHash: Subject<File[]> = new ReplaySubject(1);
+  public workResult$ = this.multiFilesToHash.pipe(
+    observeOn(asyncScheduler),
+    switchMap(files => this.hashMultipleFiles(files)),
+  );
+
+  public filenames$ = this.multiFilesToHash.pipe(
+    map(files => files.map(f => f.name)),
+    shareReplay(1),
+  );
+
+  public eventsPool$: Subject<HashWorkerMessage> = new Subject();
+
+  public completedFiles$: Observable<string[]> = this.filenames$.pipe(
+    switchMap(() =>
+      this.eventsPool$.pipe(
+        groupBy(m => m.file),
+        mergeMap(fileMessage$ =>
+          fileMessage$.pipe(
+            filter(e => e.fileEventType === FileHashEvent.HASH_RECEIVED),
+            take(1),
+          ),
+        ),
+        map(message => message.file),
+        scan<string, string[]>((files, file) => [...files, file], []),
+        startWith([]),
+      ),
+    ),
+  );
+
+  // public complete$: Observable<boolean> = combineLatest([this.filenames$, this.completedFiles$]).pipe(
+  //   map(([files, completedFiles]) => files.length === completedFiles.length),
+  // );
+
+  // public status$: Observable<string> = concat(of(null), this.complete$).pipe(
+  //   map(isComplete => {
+  //     switch (isComplete) {
+  //       case null:
+  //         return 'Waiting for file selection';
+  //       case true:
+  //         return 'Completed';
+  //       case false:
+  //         return 'Processing files';
+  //     }
+  //   }),
+  // );
+
+  public eventListPool$: Observable<HashWorkerMessage[]> = this.eventsPool$.pipe(
+    scan<HashWorkerMessage, HashWorkerMessage[]>((list, event) => {
+      list.push(event);
+      return list;
+    }, []),
+    map(events => {
+      const lastEventMap = new Map();
+
+      return events
+        .sort((a, b) => a.timestamp.valueOf() - b.timestamp.valueOf())
+        .map(event => {
+          const lastEvent = lastEventMap.get(event.file);
+
+          lastEventMap.set(event.file, event);
+
+          return {
+            ...event,
+            millisSinceLast: lastEvent ? event.timestamp.valueOf() - lastEvent.timestamp.valueOf() : null,
+          };
+        });
+    }),
+  );
+
+  private *workPool(files: File[]): IterableIterator<File> {
+    for (const file of files) {
+      yield file;
+      this.eventsPool$.next(this.logMessage(FileHashEvent.PICKED_UP, `file picked up for processing`, file.name, '20'));
+    }
+  }
+
+  public hashMultipleFiles(files: File[]): Observable<HashWorkerMessage> {
+    const queue: IterableIterator<File> = this.workPool(files);
+
+    return fromWorkerPool<Blob, HashWorkerMessage>(index => {
+      const worker = new Worker('./file-hash.worker', { name: `hash-worker-${index}`, type: 'module' });
+      this.eventsPool$.next(this.logMessage(null, `worker ${index} created`));
+      return worker;
+    }, queue).pipe(
+      tap(res => {
+        this.eventsPool$.next(res);
+        if (res.fileEventType === FileHashEvent.HASH_COMPUTED) {
+          this.eventsPool$.next({
+            ...res,
+            fileEventType: FileHashEvent.HASH_RECEIVED,
+            timestamp: new Date(),
+            message: 'hash received',
+            thread: Thread.MAIN,
+          });
+        }
+      }),
+    );
+  }
+  //9999481217
+  public calculateMD5Multiple($event): void {
+    const files: File[] = Array.from($event.target.files);
+    this.multiFilesToHash.next(files);
+    for (const file of files) {
+      this.eventsPool$.next(this.logMessage(FileHashEvent.SELECTED, 'file selected', file.name, '5'));
+    }
+  }
+
+  private logMessage(eventType: FileHashEvent | null, message: string, file?: string, percentage?: string): HashWorkerMessage {
+    return { message, file, timestamp: new Date(), thread: Thread.MAIN, fileEventType: eventType, percentage };
   }
 }
 

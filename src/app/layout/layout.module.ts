@@ -14,6 +14,7 @@ import { LoanOverviewComponent } from './features/loan-review/loan-overview/loan
 import { IncomeVerificationComponent } from './features/loan-review/income-verification/income-verification.component';
 import { ConditionsComponent } from './features/loan-review/conditions/conditions.component';
 import { DocumentsComponent } from './features/loan-review/documents/documents.component';
+import { LogListComponent } from './features/pipe-line/dashboard/log-list/log-list.component';
 
 
 
@@ -32,6 +33,7 @@ import { DocumentsComponent } from './features/loan-review/documents/documents.c
     IncomeVerificationComponent,
     ConditionsComponent,
     DocumentsComponent,
+    LogListComponent,
     
 
   ],

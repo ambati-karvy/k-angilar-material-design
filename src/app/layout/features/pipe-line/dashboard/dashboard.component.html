@@ -1,49 +1,19 @@
+<h1>Trillo</h1>
+<button (click)="createObs()">OBS Create</button>
+<button (click)="destory()">OBS desctory</button>
+<input type="file" multiple (change)="calculateMD5Multiple($event)" />
 
+<!-- <h3 [attr.data]="chartObserver$ | async">Timeline</h3>
+<div #timeline></div> -->
 
-<h1>Component heading</h1>
-<div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort  >
-  
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header > No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-      </ng-container>
-  
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header > Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-      </ng-container>
-  
-      <!-- Weight Column -->
-      <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header > Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-      </ng-container>
-  
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header > Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-      </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-toolbar>
-        <!-- <mat-toolbar-row>
-            
-        </mat-toolbar-row> -->
-        <div class="table-file-icon">
-            <mat-icon  title="Export as CSV">save_alt</mat-icon>
-            <h3 style="font-size:2vw;">Example of div inside a dkhrjkhjkrkjerhkerhkkhkj------------iv.jhsdgfgsdfjgsdfjgsdjf</h3> 
-           
-             
-        </div>
-        
-        
-    </mat-toolbar>
-  
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
-</div>
+<h3>Events:</h3>
+<ol [attr.data]="workResult$ | async">   
+    <li *ngFor="let file of filenames$ | async">
+        <ul>
+            <li *ngFor="let event of eventListPool$ | async">
+                <app-log-list *ngIf="filenames$ | async as filenames" [message]="event" [files]="filenames"></app-log-list>
+            </li> 
+        </ul>
+        <h1>++++++++++++</h1>
+    </li>
+</ol>

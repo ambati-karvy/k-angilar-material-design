@@ -1,27 +1,89 @@
-// @import '~@angular/material/theming';
+// // @import '~@angular/material/theming';
 
 
-// @mixin app-root-typography($config) {
-//     app-dashboard {
-//     h1 {
-//       @include mat-typography-level-to-styles($config, title);
-//     }
-//   }
+// // @mixin app-root-typography($config) {
+// //     app-dashboard {
+// //     h1 {
+// //       @include mat-typography-level-to-styles($config, title);
+// //     }
+// //   }
+// // }
+// ::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
+//     opacity: 3 !important;
+//     transform: translateY(0px) !important;
 // }
-::ng-deep .mat-sort-header-container:not(.mat-sort-header-sorted) .mat-sort-header-arrow {
-    opacity: 3 !important;
-    transform: translateY(0px) !important;
+
+// .header-align-right{
+//     display: flex;
+//     padding:  0px;
+//     justify-content: flex-start;
+//   }
+
+
+// table {
+//     width: 100%;
+// }
+
+// .container {
+//     background-color: #ccc;
+//     padding: 10px;
+
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     align-items: center;
+//     flex-wrap: wrap;
+//     align-content: flex-start;
+// }
+
+// .item {
+//     background-color: pink;
+//     padding: 20px;
+//     margin: 20px;
+//     color:red;
+//     font-size: 40px;
+    
+// }
+
+// .i2 {
+//     height: 70px;
+//     // flex-basis: 300px;
+//     // flex-shrink: 1;
+//     flex: 0 1 300px;   
+// }
+
+// .i3 {
+//     order: 1;
+//     flex:1
+// }
+
+// .i4 {
+//     align-self: flex-end;
+//     order: -1;
+// }
+
+
+.main-div {
+    display: inline-block;
+}
+.sub-div1{
+    display: inline-block;
+    background-color: red;
+}
+.sub-div2{
+    display: inline-block;
+    background-color: green;
+}
+.sub-div3 {
+    display: inline-block;
+    background-color: yellow;
 }
 
-.header-align-right{
-    display: flex;
-    padding:  0px;
-    justify-content: flex-start;
-  }
-
-
-table {
-    width: 100%;
+.file-sub {
+    display: inline-block;
 }
-
-
+.file-not {
+    position: relative;
+    display: inline-block;
+    background-color: red;
+}

@@ -1,13 +1,19 @@
+
+
 import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ThemePalette } from '@angular/material/core';
+import { ThemePalette, MAT_LABEL_GLOBAL_OPTIONS } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { LoanServiceService } from '../../services/loan-service.service';
+import { MatFormFieldDefaultOptions, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-pipe-line',
   templateUrl: './pipe-line.component.html',
-  styleUrls: ['./pipe-line.component.scss']
+  styleUrls: ['./pipe-line.component.scss'],
+  providers: [
+    { provide: MAT_LABEL_GLOBAL_OPTIONS, useValue: {appearance: 'fill'} }
+  ]
 })
 export class PipeLineComponent implements OnInit,AfterViewInit  {
   @ViewChild('mismoFileUpload') mismoFileUpload: TemplateRef<any>;
@@ -105,3 +111,8 @@ export class PipeLineComponent implements OnInit,AfterViewInit  {
   }
 
 }
+
+
+export const appearance: MatFormFieldDefaultOptions = {
+  appearance: 'outline'
+};
